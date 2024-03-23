@@ -1,0 +1,249 @@
+{% extends "base.html" %}
+{% load static %} 
+{% load humanize %} 
+{% block content %}
+
+<main>
+  <!-- Hero Area Start-->
+  <div class="slider-area">
+    <div
+      class="single-slider section-overly slider-height2 d-flex align-items-center"
+      data-background="{% static 'assets/img/hero/about.jpg' %}"
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-12">
+            <div class="hero-cap text-center">
+              <h2>{{job.title}}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Hero Area End -->
+  <!-- job post company Start -->
+  <div class="job-post-company pt-120 pb-120">
+    <div class="container">
+      <div class="row justify-content-between">
+        <!-- Left Content -->
+        <div class="col-xl-7 col-lg-8">
+          <!-- job single -->
+          <div class="single-job-items mb-50">
+            <div class="job-items">
+              <div class="company-img company-img-details">
+                <a href="#"
+                  ><img src="assets/img/icon/job-list1.png" alt=""
+                /></a>
+              </div>
+              <div class="job-tittle">
+                <a href="#">
+                  <h4>{{job.title}}</h4>
+                </a>
+                <ul>
+                  {% if job.user.has_company %}
+                  <li>{{job.user.company.name}}</li>
+
+                  {% endif %}
+                  <li><i class="fas fa-map-marker-alt"></i>{{job.location}}</li>
+                  <li>{{job.price|intcomma}} DZD</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- job single End -->
+
+          <div class="job-post-details">
+            <div class="post-details1 mb-50">
+              <!-- Small Section Tittle -->
+              <div class="small-section-tittle">
+                <h4>Job Description</h4>
+              </div>
+              <p>{{job.description}}.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Right Content -->
+        <div class="col-xl-4 col-lg-4">
+          <div class="post-details3 mb-50">
+            <!-- Small Section Tittle -->
+            <div class="small-section-tittle">
+              <h4>Job Overview</h4>
+            </div>
+            <ul>
+              <li>Posted date : <span>{{job.created_at}}</span></li>
+              <li>Location : <span>{{job.location}}</span></li>
+              <li>Job nature : <span>{{job.category.title}}</span></li>
+              <li>Phone Number : <span>{{job.user.phone}}</span></li>
+            </ul>
+            <div class="apply-btn2">
+              <a href="#" class="btn">Apply Now</a>
+            </div>
+          </div>
+          {% if job.user.has_company %}
+
+          <div class="post-details4 mb-50">
+            <!-- Small Section Tittle -->
+            <div class="small-section-tittle">
+              <h4>Company Information</h4>
+            </div>
+            <span>{{job.user.company.name}}</span>
+            <p>
+              It is a long established fact that a reader will be distracted by
+              the readable content of a page when looking at its layout.
+            </p>
+            <ul>
+              <li>Name: <span>Colorlib </span></li>
+              <li>Web : <span> colorlib.com</span></li>
+              <li>Email: <span>carrier.colorlib@gmail.com</span></li>
+            </ul>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9">
+          <header class="section-heading">
+            <h3>client comments and rating</h3>
+          </header>
+          <form action="{% url 'job:review' job.id %}" method="POST">
+            {% csrf_token %}
+            <h5>Write your review</h5>
+
+            <!-- Rating -->
+            <div>
+              <label for="rating">Rate my work:</label><br />
+              <div class="rate">
+                <input
+                  type="radio"
+                  name="rating"
+                  id="rating5"
+                  required
+                  value="5"
+                /><label title="5" for="rating5"></label>
+                <input
+                  type="radio"
+                  name="rating"
+                  id="rating4.5"
+                  required
+                  value="4.5"
+                /><label title="4.5" for="rating4.5" class="half"></label>
+                <input
+                  type="radio"
+                  name="rating"
+                  id="rating4"
+                  required
+                  value="4"
+                /><label title="4" for="rating4"></label>
+                <input
+                  type="radio"
+                  name="rating"
+                  id="rating3.5"
+                  required
+                  value="3.5"
+                /><label title="3.5" for="rating3.5" class="half"></label>
+                <input
+                  type="radio"
+                  name="rating"
+                  id="rating3"
+                  required
+                  value="3"
+                /><label title="3" for="rating3"></label>
+                <input
+                  type="radio"
+                  name="rating"
+                  id="rating2.5"
+                  required
+                  value="2.5"
+                /><label title="2.5" for="rating2.5" class="half"></label>
+                <input
+                  type="radio"
+                  name="rating"
+                  id="rating2"
+                  required
+                  value="2"
+                /><label title="2" for="rating2"></label>
+                <input
+                  type="radio"
+                  name="rating"
+                  id="rating1.5"
+                  required
+                  value="1.5"
+                /><label title="1.5" for="rating1.5" class="half"></label>
+                <input
+                  type="radio"
+                  name="rating"
+                  id="rating1"
+                  required
+                  value="1"
+                /><label title="1" for="rating1"></label>
+                <input
+                  type="radio"
+                  name="rating"
+                  id="rating0.5"
+                  required
+                  value="0.5"
+                /><label title="0.5" for="rating0.5" class="half"></label>
+              </div>
+            </div>
+
+            <!-- Review Title -->
+            <div>
+              <label for="title">Review title:</label><br />
+              <input
+                type="text"
+                name="title"
+                id="title"
+                class="form-control"
+                placeholder="Title"
+                required
+              /><br />
+            </div>
+
+            <!-- Comment -->
+            <div>
+              <label for="review">Comment:</label><br />
+              <textarea
+                name="review"
+                id="review"
+                cols="30"
+                rows="10"
+                class="form-control"
+                required
+              ></textarea
+              ><br />
+            </div>
+
+            <!-- Submit Button -->
+            <input
+              type="submit"
+              value="Rate & Comment"
+              class="form-control btn btn-primary"
+            />
+          </form>
+
+          <article class="box mb-3">
+            <div class="icontext w-100">
+              <img src="" alt="" class="img-xs icon rounded-circle" />
+              <div class="text">
+                <span class="date text-muted float-md-right">24/04/2024</span>
+                <h6 class="mb-1">fethallah</h6>
+              </div>
+            </div>
+            <div class="mt-3">
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero
+                iusto ut deserunt nemo totam ex aliquam ducimus sit, enim
+                voluptas. Corporis rem quod quidem quos incidunt deleniti quas,
+                magni ullam.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- job post company End -->
+</main>
+
+{% endblock content %}

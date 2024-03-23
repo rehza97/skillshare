@@ -1,0 +1,44 @@
+/* Hide radio inputs */
+.rate > input {
+    display: none;
+}
+
+/* Display stars inline-block */
+.rate {
+    display: inline-block;
+    border: 0;
+}
+
+/* Align labels to the right */
+.rate > label {
+    float: right;
+}
+
+/* Style for full stars */
+.rate > label:before {
+    display: inline;
+    font-size: 1.1rem;
+    font-family: FontAwesome; /* Assuming FontAwesome for star icons */
+    content: "\f005"; /* Unicode for star icon */
+    margin: 0;
+    padding: 0.1rem .5rem;
+    cursor: pointer;
+}
+
+/* Style for half stars */
+.rate .half:before {
+    content: '\f089'; /* Unicode for half-star icon */
+    position: absolute;
+    padding-right: 0;
+}
+
+/* Highlight checked and hovered stars */
+input:checked ~ label,
+label:hover ~ label {
+    color: #ffb503; /* Highlight color */
+}
+
+
+input:checked + label:hover , input:checked ~ label:hover,input:checked ~ label:hover ~ label ,label:hover ~ input:checked ~ label {
+    color: #cc9000;
+}

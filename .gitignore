@@ -1,0 +1,67 @@
+project.rar
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Secret key file
+*.key
+
+# Development and environment files
+.env
+.env.local
+.env.*.local
+
+# Local runtime configuration
+/.venv/
+env/
+venv/
+ENV/
+jobfinderportal-master/
+# Compiled Python files
+*.pyc
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite3
+
+# Static files directory
+/staticfiles/
+
+# Media files directory
+/media/
+
+# Site-specific
+*.swp
+.DS_Store
+Thumbs.db
+
+# Ignore pipenv environment
+/.venv/
+
+# Ignore PyCharm files
+.idea/
+
+# Ignore VSCode files
+.vscode/
+
+# Ignore Docker Compose files
+docker-compose.yml
+docker-compose.override.yml
+
+# Ignore database backups
+*.bak
+
+# Ignore IDE-specific files
+*.pydevproject
+*.pyc
+*.pyo
+*.pyc
+*~
+*.swp
+
+# Ignore system-specific files
+.DS_Store
+Thumbs.db
+todo.txt

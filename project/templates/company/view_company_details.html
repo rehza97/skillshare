@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+<style>
+    .blas{
+        margin-bottom: 10rem;
+    }
+    .lo{
+        text-align: center;
+        font-size: large;
+    }
+</style>
+<main>
+    <div class="container mt-5 blas">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header lo"> your compnay mr {{user.username}} details</div>
+                    <div class="card-body">
+                        <p>owner : {{company.user}}</p>
+                        <p>name of compnay : {{company.name}}</p>
+                        <p>est date: {{company.est_date}}</p>
+                        <p>city :{{company.city}}</p>
+                        <p>state :{{company.state}}</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}
