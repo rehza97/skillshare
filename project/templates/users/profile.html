@@ -76,7 +76,7 @@
 <h4>{{user.username}}</h4>
 <p class="text-secondary mb-1">{{user.job_title}}</p>
 <div class="row" style="text-align: center; display: flex;  justify-content: space-around;">
-    <button class="btn btn-outline-primary" style="margin: 10px;" >Message</button>
+    <button class="btn btn-outline-primary" style="margin: 10px;" ><a href="{% url 'chat:chat' user.id %}">contact me</a></button>
     <button class="btn btn-primary" style="margin: 10px;">report</button><br>
 </div>
 

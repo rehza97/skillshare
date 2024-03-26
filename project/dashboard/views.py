@@ -18,11 +18,15 @@ from job.models import Job, Category
 def dashboard(request):
     categories = Category.objects.all()[:8]
     jobs = Job.objects.filter(is_available=True)[:4]
+    user = request.user
+    rec_jobs = Job.objects.filter(user=user)
     jobs_counts = jobs.count()
+    print(user)
     context = {
         "jobs" : jobs,
         "jobs_counts" : jobs_counts,
         "categories" : categories,
+        "rec_jobs" : rec_jobs,
         
     }
     return render(request , 'dashboard/dashboard.html',context)

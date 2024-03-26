@@ -72,7 +72,8 @@ def login_user(request):
         user = authenticate(request, username=email, password=password)
         if user is not None and user.is_active:
             login(request, user)
-
+            user.is_online = True
+            user.save()
             return redirect('dashboard:dashboard')
 
         else:
@@ -83,11 +84,13 @@ def login_user(request):
 
 
 def logout_user(request):
+    request.user.is_online =False
+    request.user.save()
     logout(request)
     messages.info(request, 'Logged out successfully')
     return redirect('users:login_user')
 
-def myprofile(request,pk):
+def myprofile(request):
     user = User.objects.get(id=request.user.id)
     print("_________________________________________________________")
     print(user)
@@ -96,3 +99,17 @@ def myprofile(request,pk):
         'user' :user
     }
     return render(request,'users/profile.html',context)
+def elseProfile(request,pk):
+    user = User.objects.get(id=pk)
+    print("_________________________________________________________")
+    print(user)
+    print("_________________________________________________________")
+    context = {
+        'user' :user
+    }
+    return render(request,'users/profile.html',context)
+
+# def update_profile(request, pk):
+#     user = User.objects.get(pk)
+#     if  request.method=='POST':
+        

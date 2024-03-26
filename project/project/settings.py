@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -43,10 +44,12 @@ INSTALLED_APPS = [
     'company',
     'dashboard',
     'job',
+    'chat',
     
     # installed outside apps
     'widget_tweaks',
     'django.contrib.humanize',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +140,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
 AUTHENTICATION_BACKENDS = ['users.backend.EmailBackend']
+

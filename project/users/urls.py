@@ -7,5 +7,6 @@ urlpatterns = [
     path('recruiter/regester/',register_recruiter,name='register_recruiter'),
     path('login/',login_user,name='login_user'),
     path('logout/',logout_user,name='logout_user'),
-    path('profile/<int:pk>',myprofile,name='myprofile'),
+    path('myprofile/',myprofile,name='myprofile'),
+    path('profile/<int:pk>',elseProfile,name='elseProfile'),
 ]

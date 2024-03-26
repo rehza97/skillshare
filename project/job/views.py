@@ -115,3 +115,9 @@ def review(request, pk):
                 return redirect(url)
     else:
         return redirect(f'job_details/{pk}')
+    
+    
+def delete_job(requst , pk):
+    job = Job.objects.get(id=pk)
+    job.delete()
+    return redirect('dashboard:dashboard')

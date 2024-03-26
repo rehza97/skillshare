@@ -71,6 +71,7 @@
               <h4>Job Overview</h4>
             </div>
             <ul>
+              <li>Posted by : <a href="{% url 'users:elseProfile' job.user.id %}" style="color: black;"><span>{{job.user}}</span></a></li>
               <li>Posted date : <span>{{job.created_at}}</span></li>
               <li>Location : <span>{{job.location}}</span></li>
               <li>Job nature : <span>{{job.category.title}}</span></li>

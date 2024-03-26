@@ -1,14 +1,14 @@
 from django.db import models
-from users.models import User
+
 # Create your models here.
 class Category(models.Model):
-    # banner =  models.ImageField(upload_to='category/banners/')
+    banner =  models.ImageField(upload_to='category/banners/' , blank=True , null=True)
     title = models.CharField(max_length=200)
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.title
-    
+from users.models import User
 class Job(models.Model):
     user = models.ForeignKey(User , on_delete=models.CASCADE)
     title = models.CharField(max_length=200)

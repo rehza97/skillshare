@@ -87,7 +87,7 @@
                                         </a>
                                         <div class="dropdown-menu" style="border-bottom:none !important;" aria-labelledby="dropdownMenuLink">
                                           
-                                          <a class="dropdown-item btn head-btn2" href="{% url 'users:myprofile' request.user.id %}">my profile</a>
+                                          <a class="dropdown-item btn head-btn2" href="{% url 'users:myprofile'  %}">my profile</a>
                                           {% if user.has_company %}
                                           <a class="dropdown-item btn head-btn2" href="{% url 'company:company_details' user.company.id %}">my compnay</a>
                                             
