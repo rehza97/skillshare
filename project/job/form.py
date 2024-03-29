@@ -3,12 +3,12 @@ from .models import Job , CateFeed , ReviewRating
 class JobFormCreation(forms.ModelForm):
     class Meta:
         model = Job
-        fields=['title','location', 'description','price','is_available','category']
+        fields=['title','Wilaya', 'description','price','is_available','category']
         
 class JobFormUpdate(forms.ModelForm):
     class Meta:
         model = Job
-        fields=['title','location', 'description','price','is_available','category']
+        fields=['title','Wilaya', 'description','price','is_available','category']
         
 class categoryFeedBackForm(forms.ModelForm):
     class Meta:

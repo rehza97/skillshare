@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import User
 
 # Create your models here.
 class Category(models.Model):
@@ -8,7 +9,8 @@ class Category(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.title
-from users.models import User
+    
+
 class Job(models.Model):
     user = models.ForeignKey(User , on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
@@ -16,7 +18,59 @@ class Job(models.Model):
     description = models.TextField()
     category = models.ForeignKey(Category , on_delete=models.DO_NOTHING,blank=True , null = True )
     price = models.PositiveIntegerField()
-    location = models.CharField(max_length=100)
+    
+    WILAYA_CHOICES = [
+        ('Adrar', 'Adrar'),
+        ('Chlef', 'Chlef'),
+        ('Laghouat', 'Laghouat'),
+        ('Oum El Bouaghi', 'Oum El Bouaghi'),
+        ('Batna', 'Batna'),
+        ('Béjaïa', 'Béjaïa'),
+        ('Biskra', 'Biskra'),
+        ('Béchar', 'Béchar'),
+        ('Blida', 'Blida'),
+        ('Bouira', 'Bouira'),
+        ('Tamanrasset', 'Tamanrasset'),
+        ('Tébessa', 'Tébessa'),
+        ('Tlemcen', 'Tlemcen'),
+        ('Tiaret', 'Tiaret'),
+        ('Tizi Ouzou', 'Tizi Ouzou'),
+        ('Alger', 'Alger'),
+        ('Djelfa', 'Djelfa'),
+        ('Jijel', 'Jijel'),
+        ('Sétif', 'Sétif'),
+        ('Saïda', 'Saïda'),
+        ('Skikda', 'Skikda'),
+        ('Sidi Bel Abbès', 'Sidi Bel Abbès'),
+        ('Annaba', 'Annaba'),
+        ('Guelma', 'Guelma'),
+        ('Constantine', 'Constantine'),
+        ('Médéa', 'Médéa'),
+        ('Mostaganem', 'Mostaganem'),
+        ("M'Sila", "M'Sila"),
+        ('Mascara', 'Mascara'),
+        ('Ouargla', 'Ouargla'),
+        ('Oran', 'Oran'),
+        ('El Bayadh', 'El Bayadh'),
+        ('Illizi', 'Illizi'),
+        ('Bordj Bou Arréridj', 'Bordj Bou Arréridj'),
+        ('Boumerdès', 'Boumerdès'),
+        ('El Tarf', 'El Tarf'),
+        ('Tindouf', 'Tindouf'),
+        ('Tissemsilt', 'Tissemsilt'),
+        ('El Oued', 'El Oued'),
+        ('Khenchela', 'Khenchela'),
+        ('Souk Ahras', 'Souk Ahras'),
+        ('Tipaza', 'Tipaza'),
+        ('Mila', 'Mila'),
+        ('Aïn Defla', 'Aïn Defla'),
+        ('Naâma', 'Naâma'),
+        ('Aïn Témouchent', 'Aïn Témouchent'),
+        ('Ghardaïa', 'Ghardaïa'),
+        ('Relizane', 'Relizane')
+    ]
+    
+    Wilaya = models.CharField(max_length=100, choices=WILAYA_CHOICES,blank = True , null = True)
     is_available = models.BooleanField(default=True)
     # image1 = models.ImageField(upload_to='post/')
     # image2 = models.ImageField(upload_to='post/')

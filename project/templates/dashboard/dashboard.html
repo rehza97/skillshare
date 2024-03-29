@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 {% load humanize %}
+{% load widget_tweaks %}
+
 
 
 {% block content %}
@@ -18,6 +20,41 @@
 .links-container .link {
     margin-right: 10px; /* Adjust as needed */
 }
+.list{
+    height: 200px !important;
+    overflow: scroll !important;
+}
+
+form.search-box {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-evenly !important;
+    flex-direction: row !important;
+}
+
+form.search-box .search-form input {
+    width: 100%;
+    height: 70px;
+    background: #fb246a;
+    font-size: 20px;
+    line-height: 1;
+    text-align: center;
+    color: #fff;
+    display: block;
+    padding: 15px;
+    border-radius: 0px;
+    text-transform: capitalize;
+    font-family: "Muli", sans-serif;
+    letter-spacing: 0.1em;
+    line-height: 1.2;
+    line-height: 38px;
+    font-size: 14px;
+    border: 0;
+    cursor: pointer;
+}
+
+
+
 
 </style>
 
@@ -41,21 +78,25 @@
                             <div class="col-xl-8">
                                 <!-- form -->
                                 <form action="#" class="search-box">
+
+
                                     <div class="input-form">
-                                        <input type="text" placeholder="Job Tittle or keyword">
+                                    {% render_field myFilter.form.title class="form-control" placeholder="Job Tittle or keyword"  %}
+                                    
+                                    
+                                </div>
+                                <div class="select-form">
+                                    <div class="select-itms">
+                                            {% render_field myFilter.form.Wilaya     %}
+                                        </div>
                                     </div>
-                                    <div class="select-form">
-                                        <div class="select-itms">
-                                            <select name="select" id="select1">
-                                                <option value="">Location BD</option>
-                                                <option value="">Location PK</option>
-                                                <option value="">Location US</option>
-                                                <option value="">Location UK</option>
-                                            </select>
+                                <div class="select-form">
+                                    <div class="select-itms">
+                                            {% render_field myFilter.form.category     %}
                                         </div>
                                     </div>
                                     <div class="search-form">
-                                        <a href="#">Find job</a>
+                                        <input type="submit">
                                     </div>	
                                 </form>	
                             </div>
@@ -85,97 +126,19 @@
                                 <span class="flaticon-tour"></span>
                             </div>
                             <div class="services-cap">
-                               <h5><a href="job_listing.html">{{category.title}}</a></h5>
+                               <h5><a href="{% url 'dashboard:find_job' %}">{{category.title}}</a></h5>
                                 <span>{{category.all.count}}</span>
                             </div>
                         </div>
                     </div>
-                      
                     {% endfor %}
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-cms"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Design & Development</a></h5>
-                                <span>(658)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-report"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Sales & Marketing</a></h5>
-                                <span>(658)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-app"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Mobile Application</a></h5>
-                                <span>(658)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-helmet"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Construction</a></h5>
-                                <span>(658)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-high-tech"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Information Technology</a></h5>
-                                <span>(658)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-real-estate"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Real Estate</a></h5>
-                                <span>(658)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-content"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Content Writer</a></h5>
-                                <span>(658)</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <!-- More Btn -->
                 <!-- Section Button -->
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="browse-btn2 text-center mt-50">
-                            <a href="job_listing.html" class="border-btn2">Browse All category</a>
+                            <a href="{% url 'dashboard:categories' %}" class="border-btn2">Browse All category</a>
                         </div>
                     </div>
                 </div>
@@ -226,7 +189,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="browse-btn2 text-center mt-50">
-                                    <a href="job_listing.html" class="border-btn2">Browse All availabe jobs</a>
+                                    <a href="{% url 'dashboard:find_job' %}" class="border-btn2">Browse All availabe jobs</a>
                                 </div>
                             </div>
                         </div>

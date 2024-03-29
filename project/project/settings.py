@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     # installed outside apps
     'widget_tweaks',
     'django.contrib.humanize',
-    'channels',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
