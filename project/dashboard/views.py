@@ -63,6 +63,9 @@ def joblisting(request):
     
     categories = Category.objects.all()
     jobs_counts = jobs.count()
+    
+    
+    
     context = {
         "jobs" : jobs,
         "jobs_counts" : jobs_counts,   

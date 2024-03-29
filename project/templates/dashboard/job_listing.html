@@ -4,7 +4,33 @@
 {% load humanize %}
 
 {% block content %}
-    
+<style>
+    .pagination {
+        display: flex;
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .pagination li {
+        margin-right: 5px;
+    }
+
+    .pagination li a {
+        text-decoration: none;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        color: #333;
+    }
+
+    .pagination li a.active {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .single-job-items {
+        display: none;
+    }
+</style>
 
         <!-- Hero Area Start-->
         <div class="slider-area ">
@@ -126,6 +152,8 @@
                                 </div>
                                 <!-- Count of Job list End -->
                                 <!-- single-job-content -->
+                                <div id="job-listings-container">
+
                                 {% for job in jobs %}
                                 <div class="single-job-items mb-30">
                                     <div class="job-items">
@@ -150,6 +178,7 @@
                                 </div>
                                   
                                 {% endfor %}
+                            </div>
 
                             </div>
                         </section>
@@ -160,24 +189,72 @@
         </div>
         <!-- Job List Area End -->
         <!--Pagination Start  -->
-        <div class="pagination-area pb-115 text-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="single-wrap d-flex justify-content-center">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-start">
-                                    <li class="page-item active"><a class="page-link" href="#">01</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">02</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">03</a></li>
-                                <li class="page-item"><a class="page-link" href="#"><span class="ti-angle-right"></span></a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
+       <!-- Pagination -->
+       <div class="pagination-area pb-115 text-center " id="pagination-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <nav aria-label="Page navigation example">
+                        <ul id="pagination" class="pagination justify-content-center">
+                            <!-- Pagination links will be generated dynamically here -->
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
-        <!--Pagination End  -->
+    </div>
+    <!-- End Pagination -->
+    
+    <script>
+        // Sample data (you can replace it with dynamic data)
+        const items = document.querySelectorAll('.single-job-items');
+        const itemsPerPage = 3; // Number of items per page
+    
+        // Function to display items for a given page
+        function displayItems(pageNumber) {
+            const startIndex = (pageNumber - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            
+            items.forEach((item, index) => {
+                if (index >= startIndex && index < endIndex) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    
+        // Function to generate pagination links
+        function generatePagination(pageCount) {
+            const paginationElement = document.getElementById('pagination');
+            paginationElement.innerHTML = '';
+    
+            for (let i = 1; i <= pageCount; i++) {
+                const li = document.createElement('li');
+                li.classList.add('page-item');
+                const a = document.createElement('a');
+                a.classList.add('page-link');
+                a.href = '#';
+                a.textContent = i;
+                a.addEventListener('click', function () {
+                    displayItems(i);
+                    const currentActive = document.querySelector('.pagination li a.active');
+                    if (currentActive) {
+                        currentActive.classList.remove('active');
+                    }
+                    this.classList.add('active');
+                });
+                li.appendChild(a);
+                paginationElement.appendChild(li);
+            }
+        }
+    
+        // Initial display
+        displayItems(1);
+    
+        // Generate pagination
+        const pageCount = Math.ceil(items.length / itemsPerPage);
+        generatePagination(pageCount);
+    </script>
 {% endblock content %}
    

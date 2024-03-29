@@ -22,4 +22,11 @@ class User(AbstractUser):
     has_resume = models.BooleanField(default =False)
     has_company = models.BooleanField(default =False)
     
+class Repport(models.Model):
+    repporter = models.ForeignKey(User , on_delete=models.CASCADE)
+    repported = models.ForeignKey(User , on_delete=models.CASCADE)
+    message= models.TextField()
+    counter= 0
     
+    def __str__(self) -> str:
+        return f'{self.repporter}  reported {self.repported}'

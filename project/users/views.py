@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .models import *
 from .form import *
+from job.models import *
 from resume.models import *
 from company.models import *
 
@@ -100,16 +101,21 @@ def myprofile(request):
     }
     return render(request,'users/profile.html',context)
 def elseProfile(request,pk):
-    user = User.objects.get(id=pk)
+    userdetails = User.objects.get(id=pk)
+    jobs = Job.objects.filter(user = userdetails)
+    
     print("_________________________________________________________")
-    print(user)
+    # print(myjobs)
     print("_________________________________________________________")
     context = {
-        'user' :user
+        'userdetails' :userdetails,
+        'jobs' :jobs
     }
-    return render(request,'users/profile.html',context)
+    return render(request,'users/others_profile.html',context)
 
 # def update_profile(request, pk):
 #     user = User.objects.get(pk)
 #     if  request.method=='POST':
-        
+
+def report(request ,pk):
+    
