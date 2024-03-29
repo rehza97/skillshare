@@ -9,4 +9,5 @@ urlpatterns = [
     path('logout/',logout_user,name='logout_user'),
     path('myprofile/',myprofile,name='myprofile'),
     path('profile/<int:pk>',elseProfile,name='elseProfile'),
+    path('report/<int:pk>',create_report,name='create_report'),
 ]

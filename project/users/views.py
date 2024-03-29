@@ -117,5 +117,41 @@ def elseProfile(request,pk):
 #     user = User.objects.get(pk)
 #     if  request.method=='POST':
 
-def report(request ,pk):
-    
+
+def create_report(request,pk):
+    user = User.objects.get(id=pk)
+    repported_id = user  # Assuming you're passing the repported user's ID in the POST request
+    if request.method == 'POST':
+        message = request.POST.get('message')
+        repporter = request.user  # Assuming the current user is the repporter
+        print('_______________________________')
+        print(user)
+        print('_______________________________')
+
+        # Check if the user has already reported the repported user
+        count_reports = Repport.objects.filter(reported=repported_id).count()
+        
+        print(count_reports)
+        
+        if count_reports >= 10:
+            repported_user = User.objects.get(id=pk)
+            repported_user.is_active = False
+            repported_user.save()
+
+        # if existing_report:
+        #     # If there's an existing report, just update the message and increment the counter
+        #     existing_report.message = message
+        #     existing_report.increment_counter()
+        #     existing_report.save()
+        # else:
+            # If there's no existing report, create a new one
+        repported = User.objects.get(pk=repported_id.id)  # Assuming User is your user model
+        new_report = Repport.objects.create(reported_by=repporter, reported=repported, message=message)
+        new_report.save()
+        new_report.increment_counter()
+        
+
+        return redirect(f'users:elseProfile', pk )  # Redirect to a success page after reporting
+
+    # If request method is GET, render the form for reporting
+    return render(request, 'users/report_form.html')  # Assuming you have a template for the report form

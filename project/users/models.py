@@ -23,10 +23,16 @@ class User(AbstractUser):
     has_company = models.BooleanField(default =False)
     
 class Repport(models.Model):
-    repporter = models.ForeignKey(User , on_delete=models.CASCADE)
-    repported = models.ForeignKey(User , on_delete=models.CASCADE)
-    message= models.TextField()
-    counter= 0
+    reported_by = models.ForeignKey(User, related_name='reported_by', on_delete=models.CASCADE)
+    reported = models.ForeignKey(User, related_name='reported', on_delete=models.CASCADE)
+    message = models.TextField()
+    counter = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return f'{self.reported_by} reported {self.reported}'
     
-    def __str__(self) -> str:
-        return f'{self.repporter}  reported {self.repported}'
+    def increment_counter(self):
+        self.counter += 1
+        self.save()
+
+

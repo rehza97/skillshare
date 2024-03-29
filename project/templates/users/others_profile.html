@@ -113,9 +113,7 @@
                       >contact me</a
                     >
                   </button>
-                  <button class="btn btn-primary" style="margin: 10px">
-                    report</button
-                  ><br />
+                  <a class="btn btn-primary" href="{% url 'users:create_report' userdetails.id  %}" id="reportBtn" style="margin: 10px">Report</a><br />
                 </div>
               </div>
             </div>
@@ -152,7 +150,6 @@
               </div>
               <div class="col-sm-9 text-secondary">{{userdetails.phone}}</div>
             </div>
-
             <hr />
             <div class="row">
               <div class="col-sm-3">
@@ -210,13 +207,14 @@
                     <span>{{job.created_at|timesince }}</span>
                 </div>
             </div>
-              
             {% endfor %}
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
 <script
   data-cfasync="false"
   src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"

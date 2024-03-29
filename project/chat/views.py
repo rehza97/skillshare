@@ -10,12 +10,15 @@ from django.db.models import Q , F
 
 def chat(request, pk):
     url = request.META.get('HTTP_REFERER')
+    
     # Assuming pk is the ID of the receiver
     form = ChatMessageForm()
     receiver = get_object_or_404(User, pk=pk)
     sender = request.user
     
     message_filter = Q(sender=request.user) | Q(receiver=request.user)
+    myContact = Contact.objects.filter(message_filter)
+    print(myContact)
 
 # Create a Q object to represent the condition
     message_filter = Q(sender=request.user) | Q(receiver=request.user)
@@ -44,6 +47,7 @@ def chat(request, pk):
         'receiver': receiver,
         'sender': sender,
         'allshit': allshit,
+        'myContact': myContact,
         
     }
     return render(request, 'chat/start_point_messages.html', context)
@@ -52,7 +56,14 @@ def chat(request, pk):
 def sentMsg(request, pk):
     # Load the JSON data sent in the request body
     data = json.loads(request.body)
-    
+    rec = User.objects.get(id=pk)
+
+# Check if a contact already exists between the users
+    if Contact.objects.filter(sender=request.user, receiver=rec).exists():
+        print('Contact already exists')
+    else:
+    # Create a new contact
+        Contact.objects.create(sender=request.user, receiver=rec)
     # Extract the message from the JSON data
     new_chat = data['msg']
     
