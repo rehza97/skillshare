@@ -1,10 +1,11 @@
 from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import *
 from users.models import *
 from .form import *
 # Create your views here.
-
+@login_required(login_url="users:login")
 def update_company(request):
     company = Company.objects.get(user=request.user)
     if request.method == 'POST':
@@ -25,6 +26,7 @@ def update_company(request):
 
 
 # view company detials
+@login_required(login_url="users:login")
 def  company_details(request,pk):
     company = Company.objects.get(id=pk)
     context={'company':company}

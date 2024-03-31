@@ -1,4 +1,5 @@
 from django.db import models
+from job.models import ReviewRating
 from users.models import User
 # Create your models here.
 
@@ -18,3 +19,11 @@ class Contact(models.Model):
     
     def __str__(self) -> str:
         return self.receiver.username
+    
+class notification(models.Model):
+    message = models.ForeignKey(ChatMessage ,on_delete = models.CASCADE)
+    comment = models.ForeignKey(ReviewRating,on_delete = models.CASCADE )
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self) -> str:
+        return  f'{self.message} or {self.comment}' 

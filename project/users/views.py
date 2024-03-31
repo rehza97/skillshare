@@ -6,6 +6,7 @@ from .form import *
 from job.models import *
 from resume.models import *
 from company.models import *
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -83,14 +84,20 @@ def login_user(request):
     else:
         return render(request, 'users/login.html')
 
-
+@login_required(login_url="users:login_user")
 def logout_user(request):
-    request.user.is_online =False
-    request.user.save()
-    logout(request)
-    messages.info(request, 'Logged out successfully')
+    if request.user.is_authenticated:
+        # Mark the user as offline (assuming you have an is_online field)
+        request.user.is_online = False
+        request.user.save()
+        # Logout the user
+        logout(request)
+        # Add a logout message
+        messages.info(request, 'Logged out successfully')
+    # Redirect to the login page
     return redirect('users:login_user')
 
+@login_required(login_url="users:login_user")
 def myprofile(request):
     user = User.objects.get(id=request.user.id)
     print("_________________________________________________________")

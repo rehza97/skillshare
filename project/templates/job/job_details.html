@@ -78,7 +78,7 @@
               <li>Phone Number : <span>{{job.user.phone}}</span></li>
             </ul>
             <div class="apply-btn2">
-              <a href="#" class="btn">Apply Now</a>
+              <a href="{% url 'chat:chat' job.user.id %}" class="btn">Apply Now</a>
             </div>
           </div>
           {% if job.user.has_company %}

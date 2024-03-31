@@ -1,13 +1,14 @@
 import json
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib.auth.decorators import login_required
 from .models import *
 from .forms import *
 from django.db.models import Q , F
 
 # Create your views here.
 
-
+@login_required(login_url="users:login_user")
 def chat(request, pk):
     url = request.META.get('HTTP_REFERER')
     
@@ -52,7 +53,7 @@ def chat(request, pk):
     }
     return render(request, 'chat/start_point_messages.html', context)
 
-
+@login_required(login_url="users:login_user")
 def sentMsg(request, pk):
     # Load the JSON data sent in the request body
     data = json.loads(request.body)
@@ -91,7 +92,7 @@ def sentMsg(request, pk):
             'sender' : f'{new_chat_msg.sender}',
             # 'profile_pic':f'{new_chat_msg.msg_sender.pic}',
          }, status=200)
-
+@login_required(login_url="users:login_user")
 def recvMsg(request , pk):
     # data = json.loads(request.body)
     
@@ -105,3 +106,7 @@ def recvMsg(request , pk):
     for m in chats:
         arr.append(m.body)    
     return JsonResponse(arr,safe=False)
+
+
+    
+    
