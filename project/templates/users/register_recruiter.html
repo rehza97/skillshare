@@ -26,16 +26,35 @@
                         <form method="POST" >
                             {% csrf_token %}
                             <div class="form-group">
+                                <label for="username">full name:</label>
+                                {% render_field form.first_name class="form-control" placeholder='first name'  %}
+                                {% render_field form.last_name class="form-control" placeholder='last name' %}
+                            </div>
+                            <div class="form-group">
+                                <label for="username">job title:</label>
+                                {% render_field form.job_title class="form-control" placeholder='job title'  %}
+                            </div>
+                            <div class="form-group">
+                                <label for="username">phone number:</label>
+                                {% render_field form.phone class="form-control" placeholder='phone number'  %}
+                            </div>
+                            <div class="form-group">
                                 <label for="username">Email Address:</label>
-                                {% render_field form.email class="form-control"  %}
+                                {% render_field form.email class="form-control" placeholder='email' %}
                             </div>
                             <div class="form-group">
                                 <label for="username">Password::</label>
-                                {% render_field form.password1 class="form-control"  %}
+                                {% render_field form.password1 class="form-control"  placeholder='password' %}
                             </div>
                             <div class="form-group">
                                 <label for="username">Password confirmation:</label>
-                                {% render_field form.password2 class="form-control"  %}
+                                {% render_field form.password2 class="form-control" placeholder='password confirmation'  %}
+                            </div>
+                            <div class="form-group">
+                                <label for="username">Address:</label>
+                                {% render_field form.wilaya class="form-control" placeholder='wilaya'  %}
+                                {% render_field form.baladia class="form-control" placeholder='baladia'  %}
+                                {% render_field form.address class="form-control" placeholder='rue'  %}
                             </div>
 
 

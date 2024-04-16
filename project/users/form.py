@@ -5,7 +5,7 @@ from .models import Repport
 class ResisterUserForm(UserCreationForm):
     class Meta:
         model = get_user_model()
-        fields = ['email','password1','password2']
+        fields = ['first_name','last_name','phone','wilaya','baladia','email','password1','password2','address','job_title']
 
 
 class ReportForm(forms.ModelForm):

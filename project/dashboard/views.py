@@ -1,6 +1,7 @@
 from django.shortcuts import render , redirect
 from django.urls import reverse
 from job.models import Job, Category
+from dashboard.form import ContactForm
 
 from .filter import *
 # Create your views here.
@@ -81,3 +82,31 @@ def categories(request):
         "categories" : categories,
     }
     return render(request , 'dashboard/categories.html' , context)
+
+
+def about(request):
+    
+    return render(request , 'dashboard/about.html' )
+
+def contactUs(request):
+    form = ContactForm()
+    
+    if request.method == 'POST' :
+        if not request.user.is_authenticated:
+            return redirect('users:login_user')  # Create a new form instance for GET requests or unauthenticated users
+            
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            contact_instance = form.save(commit=False)
+            contact_instance.user = request.user  # Assign the current user to the user field
+            contact_instance.save()
+            # Optionally, you can redirect to a success page or display a success message
+            return render(request, 'dashboard/contact.html')
+        # If the form is not valid, render the form again with errors
+
+    # Render the contact form template with the form context
+    context = {
+        "form": form,
+    }
+    return render(request, 'dashboard/contact.html', context)
+    

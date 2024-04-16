@@ -26,18 +26,32 @@
                         <form method="POST" >
                             {% csrf_token %}
                             <div class="form-group">
+                                <label for="username">full name:</label>
+                                {% render_field form.first_name class="form-control" placeholder='first name' required=true %}
+                                {% render_field form.last_name class="form-control" placeholder='last name' required=true %}
+                            </div>
+                            <div class="form-group">
+                                <label for="username">phone number:</label>
+                                {% render_field form.phone class="form-control" placeholder='phone number' required=true %}
+                            </div>
+                            <div class="form-group">
                                 <label for="username">Email Address:</label>
-                                {% render_field form.email class="form-control"  %}
+                                {% render_field form.email class="form-control" required=true %}
                             </div>
                             <div class="form-group">
                                 <label for="username">Password::</label>
-                                {% render_field form.password1 class="form-control"  %}
+                                {% render_field form.password1 class="form-control" required=true %}
                             </div>
                             <div class="form-group">
                                 <label for="username">Password confirmation:</label>
-                                {% render_field form.password2 class="form-control"  %}
+                                {% render_field form.password2 class="form-control" required=true %}
                             </div>
-
+                            <div class="form-group">
+                                <label for="username">Address:</label>
+                                {% render_field form.wilaya class="form-control" placeholder='wilaya' required=true %}
+                                {% render_field form.baladia class="form-control" placeholder='baladia' required=true %}
+                                {% render_field form.address class="form-control" placeholder='rue' required=true %}
+                            </div>
 
                             <button type="submit" class="btn btn-primary">Sign up</button>
                         </form>

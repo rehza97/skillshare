@@ -26,6 +26,9 @@
                                         {% endif %}
                                         {% comment %} <li><a href="contact.html">Contact</a></li>
                                         <li><a href="contact.html">notifications </a></li> {% endcomment %}
+                                        <li><a href="{% url 'dashboard:about' %}">About Us</a></li>
+                                        <li><a href="{% url 'dashboard:contectUs' %}">Contact Us</a></li>
+
                                     </ul>
                                 </nav>
                             </div>          
@@ -35,7 +38,7 @@
                                 <!-- User is authenticated (logged in) -->
                                 <div class="dropdown" style="display: inline-block;">
                                     <a class="btn head-btn1 dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  >
-                                        Welcome, {{ user.username }}!
+                                        Welcome, {{ user.last_name }} {{ user.first_name }}!
                                     </a>
                                     <div class="dropdown-menu" style="border-bottom:none !important;" aria-labelledby="dropdownMenuLink">
                                       
