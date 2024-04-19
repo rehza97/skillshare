@@ -16,33 +16,57 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header lo">create your compnay mr {{request.user.username}}</div>
+                    <div class="card-header lo">update job ad with us mr {{request.user.username}}</div>
 
                     <div class="card-body">
-                        <form method="POST" >
+                        <form method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label for="username">compnay name:</label>
+                                <label for="username">title:</label>
                                 {% render_field form.title class="form-control"  %}
                             </div>
                             <div class="form-group">
-                                <label for="username">lbaladia :</label>
-                                {% render_field form.location class="form-control"  %}
+                                <label for="username">Wilaya :</label>
+                                {% render_field form.Wilaya class="form-control"  %}
                             </div>
                             <div class="form-group">
-                                <label for="username">wilaya:</label>
+                                <label for="username">description:</label>
                                 {% render_field form.description class="form-control"  %}
                             </div>
                             <div class="form-group">
-                                <label for="username">wilaya:</label>
+                                <label for="username">price:</label>
                                 {% render_field form.price class="form-control"  %}
-                            </div>
+                            </div> <br>
                             <div class="form-group">
-                                <label for="username">wilaya:</label>
-                                {% render_field form.is_available class="form-control"  %}
+                                <label for="username">category:</label>  <br>
+                                {% render_field form.category class="form-control"  %}
+                            </div> <br>
+                            <div class="form-group">
+                                <label for="username">banner:</label>  <br>
+                                {% render_field form.banner class="form-control"  %}
+                            </div> <br>
+                            <div class="form-group">
+                                <label for="username">image1:</label>  <br>
+                                {% render_field form.image1 class="form-control"  %}
+                            </div> <br>
+                            <div class="form-group">
+                                <label for="username">image2:</label>  <br>
+                                {% render_field form.image2 class="form-control"  %}
+                            </div> <br>
+                            <div class="form-group">
+                                <label for="username">image3:</label>  <br>
+                                {% render_field form.image3 class="form-control"  %}
+                            </div> <br>
+                            <div class="form-group">
+                                <label for="username">image4:</label>  <br>
+                                {% render_field form.image4 class="form-control"  %}
+                            </div> <br>
+                            <div class="form-group form-check">
+                                <label for="username">check it if u want to make aprear for clients:</label>
+                                {% render_field form.is_available class="form-check-label"  %}
                             </div>
 
-                            <button type="submit" class="btn btn-primary">update</button>
+                            <button type="submit" class="btn btn-primary">create</button>
                         </form>
                     </div>
                 </div>

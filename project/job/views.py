@@ -48,9 +48,13 @@ def update_Job(request,pk):
     
 def job_details(request , pk):
     job = Job.objects.get(id = pk)
-
+    comments = ReviewRating.objects.filter(job=job)
+    print('____________________________________________________')
+    print(comments)
+    print('____________________________________________________')
     context = {
-        'job' : job
+        'job' : job,
+        'comments' : comments
     }
     return render(request , "job/job_details.html",context)
 @login_required(login_url="users:login_user")
@@ -99,9 +103,17 @@ def review(request, pk):
     job_instance = get_object_or_404(Job, pk=pk)  # Get the job instance or return a 404 if not found
     
     if request.method == 'POST':
+        title =  request.POST.get( "title" )
+        rating =  request.POST.get( "rating" )
+        review =  request.POST.get( "review" )
+        print('__________________________________________________')
+        print(rating)
         form = ReviewForm(request.POST)
         if form.is_valid():
             data = form.save(commit=False)
+            data.rating = rating
+            data.titre = title
+            data.review = review
             data.job = job_instance
             data.ip = request.META.get('REMOTE_ADDR')
             if request.user.is_authenticated:

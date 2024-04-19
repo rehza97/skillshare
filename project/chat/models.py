@@ -18,7 +18,7 @@ class Contact(models.Model):
     receiver = models.ForeignKey(User, related_name='his_account', on_delete=models.DO_NOTHING, blank = True , null = True)
     
     def __str__(self) -> str:
-        return self.receiver.username
+        return f' sender {self.sender.username} / reciever : {self.receiver.username}'
     
 class notification(models.Model):
     message = models.ForeignKey(ChatMessage ,on_delete = models.CASCADE)

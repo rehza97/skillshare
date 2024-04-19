@@ -14,7 +14,7 @@ class Category(models.Model):
 class Job(models.Model):
     user = models.ForeignKey(User , on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
-    banner =  models.ImageField(upload_to='post/banners/')
+    banner =  models.ImageField(upload_to='post/banners/',blank = True , null = True)
     description = models.TextField()
     category = models.ForeignKey(Category , on_delete=models.DO_NOTHING,blank=True , null = True )
     price = models.PositiveIntegerField()
@@ -72,8 +72,8 @@ class Job(models.Model):
     
     Wilaya = models.CharField(max_length=100, choices=WILAYA_CHOICES,blank = True , null = True)
     is_available = models.BooleanField(default=True)
-    image1 = models.ImageField(upload_to='post/')
-    image2 = models.ImageField(upload_to='post/')
+    image1 = models.ImageField(upload_to='post/',blank = True , null = True)
+    image2 = models.ImageField(upload_to='post/',blank = True , null = True)
     image3 = models.ImageField(upload_to='post/',blank = True , null = True)
     image4 = models.ImageField(upload_to='post/' ,blank = True , null = True)
     created_at = models.DateTimeField(auto_now_add=True)

@@ -65,6 +65,7 @@ def sentMsg(request, pk):
     else:
     # Create a new contact
         Contact.objects.create(sender=request.user, receiver=rec)
+        Contact.objects.create(sender=rec, receiver=request.user)
     # Extract the message from the JSON data
     new_chat = data['msg']
     
