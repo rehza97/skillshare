@@ -158,7 +158,13 @@
                                 <div class="single-job-items mb-30">
                                     <div class="job-items">
                                         <div class="company-img">
-                                            <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                                            {% if job.banner %}
+                                            <a href="#"><img style="width: 50px;" src="{{job.banner.url}}" alt=""></a>
+                                            
+                                            {% else %}
+                                            <a href="#"><img style="width: 50px;" src="{% static "assets/img/jobs.jpg" %}" alt="no image here"></a>
+
+                                            {% endif %}
                                         </div>
                                         <div class="job-tittle job-tittle2">
                                             <a href="#">

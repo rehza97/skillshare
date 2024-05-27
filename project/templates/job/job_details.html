@@ -70,21 +70,28 @@
                       <div class="single-gallery-image" style="background: url({{job.image1.url}});"></div>
                     </a>
                   </div>
+                  {% if job.image2 %}
                   <div class="col-md-4">
                     <a href="{{job.image2.url}}" class="img-pop-up">
                       <div class="single-gallery-image" style="background: url({{job.image2.url}});"></div>
                     </a>
                   </div>
+                  {% endif %}
+                  {% if job.image3 %}
                   <div class="col-md-4">
                     <a href="{{job.image3.url}}" class="img-pop-up">
                       <div class="single-gallery-image" style="background: url({{job.image3.url}});"></div>
                     </a>
                   </div>
+                  {% endif %}
+                  {% if job.image4 %}
                   <div class="col-md-4">
                     <a href="{{job.image4.url}}" class="img-pop-up">
                       <div class="single-gallery-image" style="background: url({{job.image4.url}});"></div>
                     </a>
                   </div>
+                    
+                  {% endif %}
 
           
 

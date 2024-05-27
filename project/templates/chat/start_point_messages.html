@@ -68,7 +68,7 @@
 										<!-- User is authenticated (logged in) -->
 										<div class="dropdown" style="display: inline-block;">
 											<a class="btn head-btn1 dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  >
-												Welcome, {{ user.username }}!
+												Welcome, {{ user.first_name }} {{ user.last_name }}!
 											</a>
 											<div class="dropdown-menu" style="border-bottom:none !important;" aria-labelledby="dropdownMenuLink">
 											  
@@ -136,13 +136,18 @@
 							
 							<div class="d-flex bd-highlight">
 								<div class="img_cont">
-									<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
+									{% if contact.receiver.profile_pic %}
+									<img src="{{contact.receiver.profile_pic.url}}" class="rounded-circle user_img">
+									
+									{% else %}
+									<img src="{% static 'assets/img/user.png' %}" class="rounded-circle user_img">
+									{% endif %}
 									{% if contact.receiver.is_online %}
 									<span class="online_icon"></span>
 									{% endif %}
 								</div>
 								<div class="user_info">
-									<span>{{contact.receiver}}</span>
+									<span>{{contact.receiver.first_name}} {{contact.receiver.last_name}}</span>
 									{% if contact.receiver.is_online %}
 									<p> online </p>
 									{% else %}
@@ -165,52 +170,56 @@
 						<div class="card-header msg_head">
 							<div class="d-flex bd-highlight">
 								<div class="img_cont">
-									<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
+									{% if receiver.profile_pic %}
+									<img src="{{receiver.profile_pic.url}}" class="rounded-circle user_img">
+									
+									{% else %}
+									<img src="{% static 'assets/img/user.png' %}" class="rounded-circle user_img">
+									{% endif %}
 									<span class="online_icon"></span>
 								</div>
 								<div class="user_info">
-									<span>{{receiver}}</span>
-									<p>1767 Messages</p>
+									<span>{{receiver.first_name}} {{receiver.last_name}}</span>
+								
 								</div>
-								<div class="video_cam">
-									<span><i class="fas fa-video"></i></span>
-									<span><i class="fas fa-phone"></i></span>
-								</div>
+								
 							</div>
-							<span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
-							<div class="action_menu">
-								<ul>
-									<li><i class="fas fa-user-circle"></i> View profile</li>
-									<li><i class="fas fa-users"></i> Add to close friends</li>
-									<li><i class="fas fa-plus"></i> Add to group</li>
-									<li><i class="fas fa-ban"></i> Block</li>
-								</ul>
-							</div>
+
 						</div>
 						<div class="card-body msg_card_body " id="rep">
-                            <!------- messages ------->
-							sender :{{sender.username}}
-							{{receiver}}
-							<p>______________________</p>
+
 						{% for chat  in allshit %}
 							{% if chat.sender.username == sender.username and chat.receiver.username == receiver.username %}
 							<div class="d-flex mb-4 replied" >
 								<div class="msg_cotainer_send">
 									{{chat.body}}
-									<span class="msg_time_send">8:55 AM, Today</span>
 								</div>
 								<div class="img_cont_msg">
-							<img src="" class="rounded-circle user_img_msg">
+									{% if chat.sender.profile_pic %}
+									
+									<img width="100%" src="{{chat.sender.profile_pic.url}}" class="rounded-circle user_img_msg">
+									
+									{% else %}
+									
+									<img width="100%" src="{% static 'assets/img/user.png' %}" class="rounded-circle user_img_msg">
+									{% endif %}
 								</div>
 							</div>
 							{% elif chat.sender.username == receiver.username and chat.receiver.username == sender.username %}
 							<div class="d-flex mb-4 received">
 								<div class="img_cont_msg">
-									<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">
+									{% if chat.receiver.profile_pic %}
+									
+									<img width="100%" src="{{chat.receiver.profile_pic.url}}" class="rounded-circle user_img_msg">
+									
+									{% else %}
+									
+									<img width="100%" src="{% static 'assets/img/user.png' %}" class="rounded-circle user_img_msg">
+									{% endif %}
 								</div>
 								<div class="msg_cotainer">
 									{{chat.body}} {{receiver.id}}
-									<span class="msg_time">8:40 AM, Today</span>
+							
 								</div>
 							</div>
 							{% endif %}

@@ -64,7 +64,7 @@ form.search-box .search-form input {
         <div class="slider-area ">
             <!-- Mobile Menu -->
             <div class="slider-active"> 
-                <div class="single-slider slider-height d-flex align-items-center" data-background="{% static 'assets/img/hero/h1_hero.jpg' %}">
+                <div class="single-slider slider-height d-flex align-items-center" data-background="{% static 'assets/img/landing.jpg' %}">
                     <div class="container">
                         <div class="row">
                             <div class="col-xl-6 col-lg-9 col-md-10">
@@ -96,7 +96,7 @@ form.search-box .search-form input {
                                         </div>
                                     </div>
                                     <div class="search-form">
-                                        <input type="submit">
+                                        <input type="submit" value="Search">
                                     </div>	
                                 </form>	
                             </div>
@@ -165,7 +165,12 @@ form.search-box .search-form input {
                         <div class="single-job-items mb-30">
                             <div class="job-items">
                                 <div class="company-img">
-                                    <a href="#"><img src="{% static 'assets/img/icon/job-list1.png' %}" alt=""></a>
+                                    {% if job.image1 %}
+                                    <a href="#"><img style="width: 100px;" src="{{job.image1.url}}" alt=""></a>
+                                    
+                                    {% else %}
+                                    <a href="#"><img style="width: 100px;" src="{% static 'assets/img/jobs.jpg' %}" alt=""></a>
+                                    {% endif %}
                                 </div>
                                 <div class="job-tittle job-tittle2">
                                     <a href="#">
